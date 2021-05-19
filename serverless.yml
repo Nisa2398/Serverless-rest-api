@@ -38,6 +38,18 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+  getEmployee:
+    handler: app.handler
+    events:
+      - http: 'GET /employees/{proxy+}'
+  createEmployee:
+    handler: app.handler
+    events:
+      - http: 'PUT /employees'
+  deleteEmployee:
+    handler: app.handler
+    events:
+      - http: 'DELETE /employees/{proxy+}'
 
 resources:
   Resources:

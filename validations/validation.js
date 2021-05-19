@@ -1,7 +1,12 @@
-const { body,validationResult}=require('express-validator')
+const { check,body,validationResult}=require('express-validator/check')
 const userValidationRules=()=>{
     return[
         body('email').isEmail()
+    ]
+}
+const paramsuserValidationRules=()=>{
+    return[
+        check('email').isEmail()
     ]
 }
 const validate=(req,res,next)=>{
@@ -17,5 +22,6 @@ const validate=(req,res,next)=>{
 }
 module.exports={
     userValidationRules,
+    paramsuserValidationRules,
     validate
 }

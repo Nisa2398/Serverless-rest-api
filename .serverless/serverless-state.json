@@ -114,6 +114,24 @@
               "LogGroupName": "/aws/lambda/uplus-dev-app"
             }
           },
+          "GetEmployeeLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/uplus-dev-getEmployee"
+            }
+          },
+          "CreateEmployeeLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/uplus-dev-createEmployee"
+            }
+          },
+          "DeleteEmployeeLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/uplus-dev-deleteEmployee"
+            }
+          },
           "IamRoleLambdaExecution": {
             "Type": "AWS::IAM::Role",
             "Properties": {
@@ -201,7 +219,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/uplus/dev/1621395035260-2021-05-19T03:30:35.260Z/uplus.zip"
+                "S3Key": "serverless/uplus/dev/1621431975871-2021-05-19T13:46:15.871Z/uplus.zip"
               },
               "Handler": "app.handler",
               "Runtime": "nodejs12.x",
@@ -224,14 +242,134 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionKUAFNNdIdrXV2opdSRYMmAV2ClPXBal6P85FXOYw7pI": {
+          "GetEmployeeLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/uplus/dev/1621431975871-2021-05-19T13:46:15.871Z/uplus.zip"
+              },
+              "Handler": "app.handler",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "uplus-dev-getEmployee",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USERS_TABLE": "users-table1-dev"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "GetEmployeeLogGroup"
+            ]
+          },
+          "CreateEmployeeLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/uplus/dev/1621431975871-2021-05-19T13:46:15.871Z/uplus.zip"
+              },
+              "Handler": "app.handler",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "uplus-dev-createEmployee",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USERS_TABLE": "users-table1-dev"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "CreateEmployeeLogGroup"
+            ]
+          },
+          "DeleteEmployeeLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/uplus/dev/1621431975871-2021-05-19T13:46:15.871Z/uplus.zip"
+              },
+              "Handler": "app.handler",
+              "Runtime": "nodejs12.x",
+              "FunctionName": "uplus-dev-deleteEmployee",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "USERS_TABLE": "users-table1-dev"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "DeleteEmployeeLogGroup"
+            ]
+          },
+          "AppLambdaVersionXVumG6Zgl71rV4HyPfMIWUSxzCTYX7np5yV5NOo": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "Tv3Nf/OYsDmOsio/FJF3tifwMlzUG40pYYfWA6yA0n4="
+              "CodeSha256": "FbbmP6PGPy04iwldDF+xGMOvE4KTqoeiOCznEgMsUwk="
+            }
+          },
+          "GetEmployeeLambdaVersiondx7rv8OICsxIkc6cUcln96217nej9heA2o4Qqy1Y": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "GetEmployeeLambdaFunction"
+              },
+              "CodeSha256": "FbbmP6PGPy04iwldDF+xGMOvE4KTqoeiOCznEgMsUwk="
+            }
+          },
+          "CreateEmployeeLambdaVersionOSsJGDZZYONmLRFRFYPLe4q9W3LQA4xMAs5Sat2M": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "CreateEmployeeLambdaFunction"
+              },
+              "CodeSha256": "FbbmP6PGPy04iwldDF+xGMOvE4KTqoeiOCznEgMsUwk="
+            }
+          },
+          "DeleteEmployeeLambdaVersionYhc6v8RQ7geeOON2zlTP5R2FfMNO1fwmb3T1ZOUSbN8": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "DeleteEmployeeLambdaFunction"
+              },
+              "CodeSha256": "FbbmP6PGPy04iwldDF+xGMOvE4KTqoeiOCznEgMsUwk="
             }
           },
           "ApiGatewayRestApi": {
@@ -254,6 +392,33 @@
                   "ApiGatewayRestApi",
                   "RootResourceId"
                 ]
+              },
+              "PathPart": "{proxy+}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceEmployees": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
+              },
+              "PathPart": "employees",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceEmployeesProxyVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceEmployees"
               },
               "PathPart": "{proxy+}",
               "RestApiId": {
@@ -350,7 +515,136 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1621395010043": {
+          "ApiGatewayMethodEmployeesProxyVarGet": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "GET",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceEmployeesProxyVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "GetEmployeeLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodEmployeesPut": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "PUT",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceEmployees"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "CreateEmployeeLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayMethodEmployeesProxyVarDelete": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "DELETE",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceEmployeesProxyVar"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": false,
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "DeleteEmployeeLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            }
+          },
+          "ApiGatewayDeployment1621431956107": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -360,7 +654,10 @@
             },
             "DependsOn": [
               "ApiGatewayMethodAny",
-              "ApiGatewayMethodProxyVarAny"
+              "ApiGatewayMethodProxyVarAny",
+              "ApiGatewayMethodEmployeesProxyVarGet",
+              "ApiGatewayMethodEmployeesPut",
+              "ApiGatewayMethodEmployeesProxyVarDelete"
             ]
           },
           "AppLambdaPermissionApiGateway": {
@@ -369,6 +666,117 @@
               "FunctionName": {
                 "Fn::GetAtt": [
                   "AppLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "GetEmployeeLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "GetEmployeeLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "CreateEmployeeLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "CreateEmployeeLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
+          },
+          "DeleteEmployeeLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "DeleteEmployeeLambdaFunction",
                   "Arn"
                 ]
               },
@@ -435,10 +843,37 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionKUAFNNdIdrXV2opdSRYMmAV2ClPXBal6P85FXOYw7pI"
+              "Ref": "AppLambdaVersionXVumG6Zgl71rV4HyPfMIWUSxzCTYX7np5yV5NOo"
             },
             "Export": {
               "Name": "sls-uplus-dev-AppLambdaFunctionQualifiedArn"
+            }
+          },
+          "GetEmployeeLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "GetEmployeeLambdaVersiondx7rv8OICsxIkc6cUcln96217nej9heA2o4Qqy1Y"
+            },
+            "Export": {
+              "Name": "sls-uplus-dev-GetEmployeeLambdaFunctionQualifiedArn"
+            }
+          },
+          "CreateEmployeeLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "CreateEmployeeLambdaVersionOSsJGDZZYONmLRFRFYPLe4q9W3LQA4xMAs5Sat2M"
+            },
+            "Export": {
+              "Name": "sls-uplus-dev-CreateEmployeeLambdaFunctionQualifiedArn"
+            }
+          },
+          "DeleteEmployeeLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "DeleteEmployeeLambdaVersionYhc6v8RQ7geeOON2zlTP5R2FfMNO1fwmb3T1ZOUSbN8"
+            },
+            "Export": {
+              "Name": "sls-uplus-dev-DeleteEmployeeLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -591,7 +1026,52 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionKUAFNNdIdrXV2opdSRYMmAV2ClPXBal6P85FXOYw7pI"
+        "versionLogicalId": "AppLambdaVersionXVumG6Zgl71rV4HyPfMIWUSxzCTYX7np5yV5NOo"
+      },
+      "getEmployee": {
+        "handler": "app.handler",
+        "events": [
+          {
+            "http": "GET /employees/{proxy+}"
+          }
+        ],
+        "name": "uplus-dev-getEmployee",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "GetEmployeeLambdaVersiondx7rv8OICsxIkc6cUcln96217nej9heA2o4Qqy1Y"
+      },
+      "createEmployee": {
+        "handler": "app.handler",
+        "events": [
+          {
+            "http": "PUT /employees"
+          }
+        ],
+        "name": "uplus-dev-createEmployee",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "CreateEmployeeLambdaVersionOSsJGDZZYONmLRFRFYPLe4q9W3LQA4xMAs5Sat2M"
+      },
+      "deleteEmployee": {
+        "handler": "app.handler",
+        "events": [
+          {
+            "http": "DELETE /employees/{proxy+}"
+          }
+        ],
+        "name": "uplus-dev-deleteEmployee",
+        "package": {},
+        "memory": 1024,
+        "timeout": 6,
+        "runtime": "nodejs12.x",
+        "vpc": {},
+        "versionLogicalId": "DeleteEmployeeLambdaVersionYhc6v8RQ7geeOON2zlTP5R2FfMNO1fwmb3T1ZOUSbN8"
       }
     },
     "resources": {
@@ -648,7 +1128,7 @@
     "artifact": "D:\\Nisa\\uplus\\.serverless\\uplus.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/uplus/dev/1621395035260-2021-05-19T03:30:35.260Z",
+    "artifactDirectoryName": "serverless/uplus/dev/1621431975871-2021-05-19T13:46:15.871Z",
     "artifact": "uplus.zip"
   }
 }

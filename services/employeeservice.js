@@ -27,8 +27,7 @@ exports.getEmployees=(req,res,next)=>{
     if (error) {
       return res.status(400).json({ error: 'Could not get user' });
     }
-    console.log(result)
-    if (result) {
+    if (result.length!=0) {
      
       return res.status(200).json(result)
     } else {
