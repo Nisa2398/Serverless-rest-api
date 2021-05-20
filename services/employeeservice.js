@@ -36,7 +36,7 @@ exports.getEmployees=(req,res,next)=>{
   });
 }
 catch(err){
-    res.status(404).json({ error: err });
+    res.status(500).json({ error: err });
   }  
 }
 exports.postEmployees=(req,res,next)=>{
@@ -50,12 +50,12 @@ exports.postEmployees=(req,res,next)=>{
   if (error) {
     return res.status(400).json(error);
   }
-  return res.status(201).json({email,name,position});
+  return res.status(200).json({email,name,position});
   
 });
 }
 catch(err){
-  res.status(404).json({ error: err });
+  res.status(500).json({ error: err });
 }  
 }
 exports.deleteEmployees=(req,res,next)=>{
@@ -75,6 +75,6 @@ exports.deleteEmployees=(req,res,next)=>{
 });
 }
 catch(err){
-  res.status(404).json({ error: err });
+  res.status(500).json({ error: err });
 }  
 }
