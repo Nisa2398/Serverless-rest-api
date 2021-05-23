@@ -7,7 +7,7 @@ if (IS_OFFLINE === 'true') {
   dynamoDb = new AWS.DynamoDB.DocumentClient({
     region: 'us-east-1',
     // endpoint: 'http://localhost:8000',
-    accessKeyId: process.env.APIKEY,  // needed if you don't have aws credentials at all in env
+    accessKeyId: process.env.APIKEY,  
     secretAccessKey: process.env.SECRETKEY
   })
   // console.log(dynamoDb);
